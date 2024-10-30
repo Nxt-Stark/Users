@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function Sidebar() {
+function Sidebar({ activeMenu, setActiveMenu }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
   const menuItems = [
     { name: 'Dashboard', icon: <i className="bi bi-house-door text-lg"></i> },
     { name: 'Users', icon: <i className="bi bi-people text-lg"></i> },
@@ -17,33 +23,45 @@ function Sidebar() {
   ];
 
   return (
-    <div className="w-64 h-screen bg-[#4D12B9] text-white py-4 pr-0 pl-4 fixed overflow-hidden top-0 left-0">
-      <div className="font-bold text-lg mb-6"><span className="bg-orange-500 px-2 py-0 rounded mr-2">S</span>SC</div>
-      <nav className="flex flex-col justify-between">
-        {menuItems.map((item, index) => (
-          <div
-            key={index}
-            className={`flex items-center gap-2 py-2 px-3 text-sm cursor-pointer rounded-l-full 
-              ${item.name === 'Users' ? 'bg-white text-[#4D12B9]' : 'hover:bg-[#ffffff30]'}`}
-            onMouseOver={(e) => {
-              if (item.name !== 'Users') {
-                e.currentTarget.classList.add('bg-[#ffffff30]');
-              }
-            }}
-            onMouseOut={(e) => {
-              if (item.name !== 'Users') {
-                e.currentTarget.classList.remove('bg-[#ffffff30]');
-              }
-            }}
-          >
-            <span>{item.icon}</span>
-            <span>{item.name}</span>
-          </div>
-        ))}
-      </nav>
-      <div className="font-bold text-sm mt-8">Service Connect</div>
-      <div className="text-sm mt-2">Lets Grow Together</div>
-    </div>
+    <>
+      <button
+        className={`lg:hidden fixed top-4 ${isOpen ? 'right-4' : 'left-4'} text-white bg-[#4D12B9] px-3 py-2 rounded-full z-50 transition-all duration-300`}
+        onClick={toggleSidebar}
+      >
+        <i className={`bi ${isOpen ? 'bi-x-lg' : 'bi-list'} text-2xl`}></i>
+      </button>
+
+      <div
+        className={`fixed flex flex-col top-0 left-0 h-screen w-64 md:w-72 lg:w-64 bg-[#4D12B9] text-white py-4 pr-0 pl-4 transition-transform duration-300 ease-in-out ${isOpen ? 'transform translate-x-0' : 'transform -translate-x-full'} lg:transform lg:translate-x-0 lg:block z-40`}
+      >
+        <div className="font-bold text-lg mb-6">
+          <span className="bg-orange-500 px-2 py-0 rounded mr-2">S</span>SC
+        </div>
+        <nav className="flex-1 overflow-y-auto">
+          {menuItems.map((item, index) => (
+            <div
+              key={index}
+              className={`flex items-center gap-2 py-2 px-3 text-sm md:text-base cursor-pointer rounded-l-full ${activeMenu === item.name ? 'bg-[#ffffff] text-blue-900' : 'hover:bg-[#ffffff30]'}`}
+              onClick={() => setActiveMenu(item.name)}
+            >
+              <span>{item.icon}</span>
+              <span className="md:block">{item.name}</span>
+            </div>
+          ))}
+        </nav>
+        <div className='mt-4'>
+          <div className="font-bold text-sm md:text-base">Service Connect</div>
+          <div className="text-sm md:text-base mt-2">Let's Grow Together</div>
+        </div>
+      </div>
+
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 lg:hidden"
+          onClick={toggleSidebar}
+        ></div>
+      )}
+    </>
   );
 }
 

@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/ServiceConnect/static/css/main.04d42893.css",
+    "main.js": "/ServiceConnect/static/js/main.bc3c1552.js",
+    "static/js/453.60cd8efe.chunk.js": "/ServiceConnect/static/js/453.60cd8efe.chunk.js",
+    "static/media/bootstrap-icons.woff?": "/ServiceConnect/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
+    "static/media/bootstrap-icons.woff2?": "/ServiceConnect/static/media/bootstrap-icons.b7bcc075b395c14ce8c2.woff2",
+    "index.html": "/ServiceConnect/index.html",
+    "main.04d42893.css.map": "/ServiceConnect/static/css/main.04d42893.css.map",
+    "main.bc3c1552.js.map": "/ServiceConnect/static/js/main.bc3c1552.js.map",
+    "453.60cd8efe.chunk.js.map": "/ServiceConnect/static/js/453.60cd8efe.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.04d42893.css",
+    "static/js/main.bc3c1552.js"
+  ]
+}
